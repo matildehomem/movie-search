@@ -2,6 +2,7 @@
   <div class="movie">
     <p>Nome: {{ movie.Title }}</p>
     <p>Ano: {{movie.Year}}</p>
+    
     <p>Realizador: {{movie.Director}}</p>
     <p>Sinopse: {{movie.Plot}}</p>
     <a v-bind:href="url" target="_blank">Link IMDB</a>
@@ -15,7 +16,7 @@
 export default {
   data() {
     return {
-      id: this.$route.params.id,
+      id: this.$route.params.id
     };
   },
   created() {
@@ -26,8 +27,8 @@ export default {
     movie() {
       return this.$store.state.movie;
     },
-    url(){
-        return 'https://www.imdb.com/title/' + this.$store.state.movie.imdbID;
+    url() {
+      return "https://www.imdb.com/title/" + this.$store.state.movie.imdbID;
     }
   },
 
@@ -41,8 +42,12 @@ export default {
 
 <style>
 .movie {
+  margin: 0 auto;
   list-style: none;
-  border: 1px solid darkgrey;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 20px;
+  max-width: 500px;
   padding: 20px;
   text-align: left;
 }
