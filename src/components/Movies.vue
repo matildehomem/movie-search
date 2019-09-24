@@ -8,7 +8,7 @@
     <ul v-else-if="!error">
       <li v-for="item in items" :key="item.imdbID" :class="{done:item.Done}">
         <p> {{ item.Title }}</p>
-        <span class="heart"  @click="e => e.target.classList.toggle('active') + saveFavorite(item) + saveToLocal(item)"></span>
+        <span class="heart"  @click="e => e.target.classList.toggle('active') + saveFavorite(item)"></span>
         <figure >
           <img :src="item.Poster" :alt="item.Title" />
         </figure>
@@ -48,12 +48,8 @@ export default {
       this.movieName = ''
     },
     saveFavorite(item) {
-      this.$store.commit("saveFavorite", item)      
+      this.$store.commit("saveFavorite", item);
     },
-    saveToLocal(item){
-    const favoritesParsed = JSON.stringify(item);
-    localStorage.setItem("favorites", favoritesParsed);
-  },
   }
 };
 </script>
