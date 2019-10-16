@@ -10,7 +10,7 @@ import Favorites from '../components/Favorites'
 
 export default {
   name: 'app',
-  components: {
+  components: { 
     Nav,
     Favorites
   }
