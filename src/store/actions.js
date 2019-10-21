@@ -13,7 +13,7 @@ const actions = {
   },
   getMovie(store, payload){
     store.commit('insertMovie', {})
-    fetch(`http://www.omdbapi.com/?apikey=e62e1d19&i=${payload}`)
+    fetch(`https://www.omdbapi.com/?apikey=e62e1d19&i=${payload}`)
       .then(json => json.json())
       .then(response => {
         if (response.Response === "True") store.commit('insertMovie', response)
