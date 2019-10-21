@@ -1,6 +1,5 @@
 <template>
 <div>
- <Nav/>
     <h1>Home </h1>
     <Movies />
 </div>
@@ -8,13 +7,11 @@
 
 
 <script>
-import Nav from '../components/Nav'
 import Movies from '../components/Movies.vue'
 
 export default {
   name: 'app',
   components: {
-    Nav,
     Movies
   }
 }
@@ -22,7 +19,7 @@ export default {
 </script>
 <style scoped>
 div{
-position: sticky;
+position: initial;
 text-align: center;
 }
 div h1{

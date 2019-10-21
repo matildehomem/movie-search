@@ -1,16 +1,13 @@
 <template>
 <div>
- <Nav/>
     <h1>About </h1>
 </div>
 </template>
 <script>
-import Nav from '../components/Nav'
 
 export default {
   name: 'app',
   components: {
-    Nav
   }
 }
 
@@ -18,7 +15,7 @@ export default {
 
 <style scoped>
 div{
-position: sticky;
+position: initial;
 text-align: center;
 }
 div h1{

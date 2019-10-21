@@ -1,27 +1,18 @@
 <template>
   <div>
-    <Nav />
     <h1>Favorites</h1>
-
     <ul>
-      <li v-for="item in favorites" :key="item.imdbID" :class="{done:item.Done}">
-        <p>Nome: {{ item.Title }}</p>
-        <p>Ano: {{item.Year}}</p>
-        <span
-          class="heart active"
-          @click="e => e.target.classList.toggle('active') + saveFavorite(item)"
-        ></span>
-
-        <figure>
-          <img :src="item.Poster" :alt="item.Title" />
-        </figure>
-      </li>
+      <MovieCard v-for="movie in favorites" :key="movie.imdbID" :item="movie"/>
     </ul>
   </div>
 </template>
 
 <script>
+import MovieCard from './MovieCard.vue'
 export default {
+  components: {
+    MovieCard
+  },
   data() {
     return {
       name: ""
@@ -29,12 +20,7 @@ export default {
   },
   computed: {
     favorites() {
-      return this.$store.state.favorites;
-    }
-  },
-  methods: {
-    saveFavorite(item) {
-      this.$store.commit("saveFavorite", item);
+      return this.$store.getters.favorites;
     }
   }
 };

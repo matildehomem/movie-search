@@ -6,10 +6,23 @@ const mutations = {
     state.items = payload
   },
   insertMovie(state, payload) {
-    state.movie = payload;    
+    state.movie = payload;
   },
   saveFavorite(state, item) {
-    state.favorites.indexOf(item) === -1 ?  (state.favorites.push(item), state.favoritesCount++) : (state.favorites.splice(state.favorites.indexOf(item), 1), state.favoritesCount--);
+    const movie = state.items.find(el => el.imdbID === item.imdbID)
+    const index = state.items.indexOf(movie)
+    if (movie.isFavorite) {
+      movie.isFavorite = false
+      state.favoritesCount--;
+
+    } else {
+      movie.isFavorite = true
+       state.favoritesCount++
+    }
+
+    //substitute card for the same but actualized
+    state.items.splice(index,1);
+    state.items.splice(index,0,movie)
   }
 }
 

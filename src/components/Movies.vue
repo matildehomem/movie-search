@@ -6,23 +6,18 @@
 
     <p v-if="loading">A pesquisar</p>
     <ul v-else-if="!error">
-      <li v-for="item in items" :key="item.imdbID" :class="{done:item.Done}">
-        <p>{{ item.Title }}</p>
-        <span class="heart" @click="e => e.target.classList.toggle('active') + saveFavorite(item)"></span>
-        <figure>
-          <img :src="item.Poster" :alt="item.Title" />
-        </figure>
-        <router-link :to="'/movies/' + item.imdbID">
-          <p>Ver Detalhes</p>
-        </router-link>
-      </li>
+      <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie"/>
     </ul>
     <div v-else>Não foi encontrado nenhum resultado</div>
   </div>
 </template>
 
 <script>
+import MovieCard from './MovieCard.vue'
 export default {
+  components: {
+    MovieCard
+  },
   data() {
     return {
       movieName: ""
@@ -88,14 +83,4 @@ li > a:hover{
   text-decoration: underline;
 }
 
-.heart {
-  height: 20px;
-  width: 20px;
-  float: right;
-  position: relative;
-  background-image: url(/assets/heart.svg);
-}
-.active {
-  background-image: url(/assets/heart-full.svg);
-}
 </style>
