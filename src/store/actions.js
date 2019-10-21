@@ -11,6 +11,15 @@ const actions = {
         else store.state.error = true;
       })
   },
+  getMovie(store, payload){
+    store.commit('insertMovie', {})
+    fetch(`http://www.omdbapi.com/?apikey=e62e1d19&i=${payload}`)
+      .then(json => json.json())
+      .then(response => {
+        if (response.Response === "True") store.commit('insertMovie', response)
+        else store.state.error = true;
+      })
+  }
 }
 
 export default actions;
