@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Movie Search</h1>
-    <input type="text" v-model="movieName" />
-    <button @keydown.enter.prevent="getItems" @click="getItems">Procurar</button>
+    <input type="text" v-model="movieName"  @keydown.enter.prevent="getItems"/>
+    <button @click="getItems">Procurar</button>
 
     <p v-if="loading">A pesquisar</p>
     <ul v-else-if="!error">

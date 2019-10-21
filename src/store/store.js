@@ -12,8 +12,6 @@ const store = new Vuex.Store({
     items: [],
     error: false,
     loading: false,
-    favorites: [],
-    movie: {},
     favoritesCount: 0
   },
   mutations,
