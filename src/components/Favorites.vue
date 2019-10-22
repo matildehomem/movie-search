@@ -13,11 +13,19 @@ export default {
   components: {
     MovieCard
   },
-  data() {
-    return {
-      name: ""
-    };
-  },
+ 
+  //  mounted() {
+  //   if (localStorage.getItem("favorites")) {
+  //     try {
+  //       //populate with data from localStorage
+
+  //       favorites = JSON.parse(localStorage.getItem("favorites"));
+
+  //     } catch (e) {
+  //       localStorage.removeItem("favorites");
+  //     }
+  //   }
+  // },
   computed: {
     favorites() {
       return this.$store.getters.favorites;
