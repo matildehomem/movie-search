@@ -14,18 +14,8 @@ export default {
     MovieCard
   },
  
-  //  mounted() {
-  //   if (localStorage.getItem("favorites")) {
-  //     try {
-  //       //populate with data from localStorage
-
-  //       favorites = JSON.parse(localStorage.getItem("favorites"));
-
-  //     } catch (e) {
-  //       localStorage.removeItem("favorites");
-  //     }
-  //   }
-  // },
+  mounted() {
+  },
   computed: {
     favorites() {
       return this.$store.getters.favorites;

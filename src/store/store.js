@@ -13,7 +13,7 @@ const store = new Vuex.Store({
     error: false,
     loading: false,
     movie: {},
-    favoritesCount: 0
+    favorites: JSON.parse(localStorage.getItem("favorites")) || []
   },
   mutations,
   getters,

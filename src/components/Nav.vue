@@ -23,7 +23,7 @@ export default {
       return this.$store.state.title;
     },
     favoritesCount() {
-      return this.$store.state.favoritesCount;
+      return this.$store.getters.favorites.length;
     },
   
   }

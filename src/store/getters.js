@@ -1,8 +1,8 @@
 export default {
     isFavorite(state) {
-        return item => state.items.find(el => el.imdbID === item.imdbID).isFavorite
+        return item => state.favorites.find(el => el.imdbID === item.imdbID)
     },
     favorites(state) {
-        return state.items.filter(item => item.isFavorite)
+        return state.favorites
     }
 }
