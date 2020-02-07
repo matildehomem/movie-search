@@ -15,7 +15,8 @@ export default {
 };
 </script>
 <style>
-html {
-  font-family: "Roboto Mono", monospace;
+html{
+  font-family: 'Montserrat', sans-serif;
+
 }
 </style>

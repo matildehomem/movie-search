@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div class="wrapper">
     <h1>Movie Search</h1>
     <input type="text" v-model="movieName"  @keydown.enter.prevent="getItems"/>
     <button @click="getItems">Procurar</button>
 
     <p v-if="loading">A pesquisar</p>
-    <ul v-else-if="!error">
-      <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie"/>
+    <ul v-else-if="!error" class="movie-wrapper">
+      <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie" @click.native="getMovie(movie.imdbID)"/>
+      <MovieDetail :movieInfo="movieInfo" v-if="MovieDetailModal"/>
     </ul>
     <div v-else>Não foi encontrado nenhum resultado</div>
   </div>
@@ -14,13 +15,17 @@
 
 <script>
 import MovieCard from './MovieCard.vue'
+import MovieDetail from './MovieDetail.vue'
+
 export default {
   components: {
-    MovieCard
+    MovieCard,
+    MovieDetail
   },
   data() {
     return {
-      movieName: ""
+      movieName: "",
+      MovieDetailModal: false
     };
   },
   computed: {
@@ -32,6 +37,9 @@ export default {
     },
     loading() {
       return this.$store.state.loading;
+    },
+    movieInfo(){
+      return this.$store.state.movie;
     }
   },
   methods: {
@@ -41,46 +49,28 @@ export default {
     },
     saveFavorite(item) {
       this.$store.commit("saveFavorite", item);
+    },
+    getMovie(id){
+      this.$store.dispatch('getMovie', id);
+      this.MovieDetailModal = true;
     }
   }
 };
 </script>
 
 <style>
-body{
-  background-color: black;
-  text-align: center;
-  color: whitesmoke;
+
+.wrapper{
+    max-width: 1024px;
+  margin: 0 auto;
 }
-ul {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-li {
-  color: black;
-  display: inline-block;
-  background-color: whitesmoke;
-  padding: 20px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-bottom: 50px;
-  width: 300px;
-  text-align: center;
-}
-li img{
-  height: 300px;
-}
-li > p:first-child {
-  display: inline-block;
-}
-li > a {
-  color: blue;
-  text-decoration: none;
-}
-li > a:hover{
-  text-decoration: underline;
+
+.movie-wrapper {
+  display: inline-grid;
+  grid-column-gap: 25px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 60px;
+
 }
 
 </style>
