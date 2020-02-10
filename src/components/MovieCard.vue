@@ -1,5 +1,5 @@
 <template>
-  <li class="movie-card" @click = "showDetails">
+  <li class="movie-card">
     <!-- <span
       class="heart"
       @click="saveFavorite(item)"
@@ -28,9 +28,6 @@ export default {
     saveFavorite(item) {
       this.$store.commit("saveFavorite", item);
     },
-    showDetails(){
-
-    }
   },
   computed: {
     isFavorite() {
@@ -62,7 +59,6 @@ export default {
 
     img {
       width: 100%;
-      min-height: 260px;
       box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.3);
     }
   }

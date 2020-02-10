@@ -15,7 +15,7 @@
     <!-- <figure @click="saveFavorite(movie)"> 
       <img :src="movieInfo.Poster" :alt="movieInfo.Title" />
     </figure> -->
-    {{movieInfo}}
+    <!-- {{movieInfo}} -->
   </div>
 </template>
 

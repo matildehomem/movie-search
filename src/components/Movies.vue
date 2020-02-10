@@ -6,7 +6,7 @@
 
     <p v-if="loading">A pesquisar</p>
     <ul v-else-if="!error" class="movie-wrapper">
-      <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie" @click.native="getMovie(movie.imdbID)"/>
+      <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie" @mouseenter.native="getMovie(movie.imdbID)" @mouseleave.native="MovieDetailModal = false"/>
       <MovieDetail :movieInfo="movieInfo" v-if="MovieDetailModal"/>
     </ul>
     <div v-else>Não foi encontrado nenhum resultado</div>
@@ -72,5 +72,6 @@ export default {
   grid-row-gap: 60px;
 
 }
+
 
 </style>
