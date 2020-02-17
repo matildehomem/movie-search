@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul>
+    <!-- <ul>
       <li>
         <router-link exact to="/">Home</router-link>
       </li>
@@ -10,14 +10,20 @@
       <li>
         <router-link to="/favorites"> My Favorites <span>({{favoritesCount}})</span></router-link>
       </li>
-    </ul>
+    </ul> -->
+  <Search />
   </nav>
 </template>
 
 <script>
 
-export default {
+import Search from "./Search.vue";
 
+
+export default {
+components: {
+    Search
+  },
   computed: {
     title() {
       return this.$store.state.title;
@@ -29,7 +35,11 @@ export default {
   }
 };
 </script>
-<style >
+<style lang="scss">
+nav{
+  background: #ed4a4a;
+  height: 60px;
+}
 nav li{
   background-color: transparent !important;
   max-width: 100px;
@@ -37,6 +47,7 @@ nav li{
 nav ul{
   display: block;
   text-align: right;
+  margin: 0;
 }
 nav li > a{
   color: white;

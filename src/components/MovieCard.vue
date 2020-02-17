@@ -1,9 +1,9 @@
 <template>
   <li
     class="movie-card"
-    @click="getMovie(item.imdbID)"
+    @mouseenter="getMovie(item.imdbID)"
+    @mouseleave="MovieDetailModal = false"
   >
-    <!-- @mouseleave="MovieDetailModal = false" -->
     <!-- <span
       class="heart"
       @click="saveFavorite(item)"

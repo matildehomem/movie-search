@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <h1>Movie Search</h1>
-    <Search />
+    <!-- <h1>Movie Search</h1> -->
+    <!-- <Search /> -->
     <p v-if="loading">A pesquisar</p>
     <ul v-else-if="!error" class="movie-wrapper">
       <MovieCard v-for="movie in items" :key="movie.imdbID" :item="movie" />
@@ -12,12 +12,12 @@
 
 <script>
 import MovieCard from "./MovieCard.vue";
-import Search from './Search.vue'
+// import Search from './Search.vue'
 
 export default {
   components: {
     MovieCard,
-    Search
+    // Search
   },
   computed: {
     items() {
@@ -41,7 +41,7 @@ export default {
 <style>
 .wrapper {
   max-width: 1024px;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
 .movie-wrapper {
