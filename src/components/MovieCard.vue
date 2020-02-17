@@ -1,5 +1,9 @@
 <template>
-  <li class="movie-card">
+  <li
+    class="movie-card"
+    @click="getMovie(item.imdbID)"
+  >
+    <!-- @mouseleave="MovieDetailModal = false" -->
     <!-- <span
       class="heart"
       @click="saveFavorite(item)"
@@ -7,31 +11,49 @@
     ></span> -->
     <!-- <router-link :to="'/movies/' + item.imdbID"> -->
     <!-- </router-link> -->
-      <figure >
-        <img :src="item.Poster" :alt="item.Title" />
-      </figure>
+    <figure>
+      <img :src="item.Poster" :alt="item.Title" />
+    </figure>
 
     <p class="movie-card__title">{{ item.Title }}</p>
     <p class="movie-card__date">{{ item.Year }}</p>
 
-
-
+    <MovieDetail :movieInfo="movieInfo" v-if="MovieDetailModal" :item="movie"/>
   </li>
 </template>
 <script>
+import MovieDetail from "./MovieDetail.vue";
+
 export default {
-  
+  components: {
+    MovieDetail
+  },
   props: {
-    item: Object
+    item: Object,
+    movie: Object
+  },
+  data() {
+    return {
+      // movieName: "",
+      MovieDetailModal: false
+    };
+  },
+
+  computed: {
+    // isFavorite() {
+    //   return this.$store.getters.isFavorite(this.item);
+    // },
+    movieInfo() {
+      return this.$store.state.movie;
+    }
   },
   methods: {
-    saveFavorite(item) {
-      this.$store.commit("saveFavorite", item);
-    },
-  },
-  computed: {
-    isFavorite() {
-      return this.$store.getters.isFavorite(this.item);
+    // saveFavorite(item) {
+    //   this.$store.commit("saveFavorite", item);
+    // },
+    getMovie(id) {
+      this.$store.dispatch("getMovie", id);
+      this.MovieDetailModal = true;
     }
   }
 };
@@ -42,17 +64,6 @@ export default {
   position: relative;
   text-align: left;
   list-style-type: none;
-
-  .heart {
-    height: 20px;
-    width: 20px;
-    float: right;
-    position: relative;
-    background-image: url(/assets/heart.svg);
-  }
-  .active {
-    background-image: url(/assets/heart-full.svg);
-  }
 
   figure {
     margin: 0;
