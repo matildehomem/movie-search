@@ -4,9 +4,15 @@
       {{ movieInfo.Title }} <span>({{ movieInfo.Year }})</span>
     </p>
     <p class="movie-detail__genre">{{ movieInfo.Genre }}</p>
+    <a
+      class="heart"
+      @click="saveFavorite(movie)"
+      :class="{ active: isFavorite }"
+    >
+    </a>
     <p class="movie-detail__plot">{{ movieInfo.Plot }}</p>
 
-    <div class="movie-detail__rating">
+    <div class="movie-detail__rating" v-if="movieInfo.Ratings">
       {{ movieInfo.Ratings[0].Value.substring(0, 3) }}
     </div>
 
@@ -26,31 +32,24 @@
       >Link IMDB</a
     >
 
-     <a
-      class="heart"
-      @click="saveFavorite(movie)"
-      :class="{ active: isFavorite }"
-    > Add</a>
-
     <!-- <figure @click="saveFavorite(movie)"> 
       <img :src="movieInfo.Poster" :alt="movieInfo.Title" />
     </figure> -->
-    {{movieInfo}}
+    <!-- {{movieInfo.Ratings}} -->
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    movieInfo: Object,
-   
+    movieInfo: Object
   },
 
   computed: {
     movie() {
       return this.$store.state.movie;
     },
-       isFavorite() {
+    isFavorite() {
       return this.$store.getters.isFavorite(this.movie);
     },
     url() {
@@ -59,8 +58,8 @@ export default {
   },
 
   methods: {
-    saveFavorite(item) {
-      this.$store.commit("saveFavorite", item);
+    saveFavorite(movie) {
+      this.$store.commit("saveFavorite", movie);
     }
   }
 };
@@ -86,11 +85,24 @@ export default {
   font-size: 14px;
   font-weight: 100;
 
-   .heart {
+  &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 0px;
+    left: -15px;
+    top: 75px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid black;
+  }
+
+  .heart {
+    position: relative;
+    display: block;
     height: 20px;
     width: 20px;
-    float: right;
-    position: relative;
     background-image: url(/assets/heart.svg);
   }
   .active {
@@ -99,11 +111,11 @@ export default {
 
   hr {
     color: whitesmoke;
-    opacity: .2;
+    opacity: 0.2;
     margin-top: 40px;
   }
 
-  &__plot{
+  &__plot {
     margin-bottom: 30px;
   }
 
@@ -133,7 +145,7 @@ export default {
   &__genre {
     color: lightblue;
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   &__subText {
@@ -147,7 +159,7 @@ export default {
     }
   }
 
-  &__link{
+  &__link {
     display: block;
     float: right;
     background: #ed4a4a;
@@ -160,7 +172,5 @@ export default {
     border-radius: 50px;
     margin-top: 20px;
   }
-
- 
 }
 </style>
