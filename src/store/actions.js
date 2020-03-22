@@ -9,6 +9,7 @@ const actions = {
         store.state.loading = false;
         if (response.Response === "True") store.commit('insertItems', response.Search)
         else store.state.error = true;
+        
       })
   },
   getMovie(store, payload){

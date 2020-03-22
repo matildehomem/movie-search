@@ -1,9 +1,21 @@
 const mutations = {
   insertItems(state, payload) {
     state.items = payload;
+    state.items.forEach(element => {
+      element.isOpen = false;
+    });
   },
+
+  closeModals(state) {
+    state.items.forEach(element => {
+      element.isOpen = false;
+    });
+  },
+
+
   insertMovie(state, payload) {
     state.movie = payload;
+
   },
   saveFavorite(state, item) {
     let itemsArray = this.getters.favorites;
@@ -20,7 +32,7 @@ const mutations = {
     localStorage.setItem("favorites", JSON.stringify(itemsArray));
     // Upd Store
     state.favorites = itemsArray;
-    
+
   }
 };
 

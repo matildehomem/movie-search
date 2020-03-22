@@ -1,56 +1,59 @@
 <template>
   <nav>
-    <!-- <ul>
-      <li>
-        <router-link exact to="/">Home</router-link>
-      </li>
-      <li>
-        <router-link to="/about">About</router-link>
-      </li>
-      <li>
-        <router-link to="/favorites"> My Favorites <span>({{favoritesCount}})</span></router-link>
-      </li>
-    </ul> -->
-  <Search />
+    <div class="nav-wrapper">
+      <Search />
+      <router-link to="/favorites">
+        Favorites: <span>{{ favoritesCount }}</span></router-link
+      >
+    </div>
   </nav>
 </template>
 
 <script>
-
 import Search from "./Search.vue";
 
-
 export default {
-components: {
+  components: {
     Search
   },
   computed: {
-    title() {
-      return this.$store.state.title;
-    },
+    
     favoritesCount() {
       return this.$store.getters.favorites.length;
-    },
-  
+    }
   }
 };
 </script>
 <style lang="scss">
-nav{
+nav {
   background: #ed4a4a;
   height: 60px;
-}
-nav li{
-  background-color: transparent !important;
-  max-width: 100px;
-}
-nav ul{
-  display: block;
-  text-align: right;
-  margin: 0;
-}
-nav li > a{
-  color: white;
-  text-decoration: none;
+
+  .nav-wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      padding: 8px 20px;
+
+      span {
+        font-weight: 600;
+      }
+
+      &:hover {
+        top: -2px;
+        box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, .1);
+      }
+    }
+  }
 }
 </style>

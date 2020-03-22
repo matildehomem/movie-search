@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <span class="icon__search" >hh</span>
+  <div class="search">
+    <div class="search__icon"></div>
     <input
       v-focus
       type="text"
@@ -8,7 +8,6 @@
       v-model="movieName"
       @keydown.enter.prevent="getItems"
     />
-    <button @click="getItems">Procurar</button>
   </div>
 </template>
 
@@ -19,8 +18,13 @@ export default {
       movieName: ""
     };
   },
+ created(){
+      this.$store.dispatch("getItems", "harry");
+      this.movieName = "";
+  },
   methods: {
     getItems() {
+      this.$router.push("/");
       this.$store.dispatch("getItems", this.movieName);
       this.movieName = "";
     }
@@ -36,31 +40,39 @@ export default {
 };
 </script>
 <style lang="scss">
-.icon__search {
-  position: relative;
-  display: block;
-  height: 20px;
-  width: 20px;
-  background-image: url(/assets/search.svg);
-}
-button {
-  display: none;
-}
-input {
-  width: 90%;
+.search {
+  display: inline-flex;
   float: right;
   height: 60px;
-  border: none;
-  background: none;
-  color: white;
-  font-size: 16px;
 
-  &::placeholder {
-    color: white;
+  &__icon {
+    height: 120px;
+    width: 20px;
+    background-image: url(/assets/search.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    margin-top: 22px;
+    margin-right: 6px;
   }
 
-  &:focus {
-    outline: none;
+  button {
+    display: none;
+  }
+  input {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 16px;
+
+    &::placeholder {
+      color: white;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>
