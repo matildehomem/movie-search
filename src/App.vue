@@ -16,6 +16,15 @@ export default {
 </script>
 <style>
 html {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 </style>
